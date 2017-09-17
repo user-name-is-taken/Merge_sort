@@ -18,36 +18,36 @@ public class MergeSortWorker implements MergeSort{
          rightSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
          leftSort = new MergeSortWorker(origionalList.subList(0, split));
       }
-      leftVal = leftSort.getVal()<=rightSort.getVal();
+      leftVal = leftSort.getValue() <= rightSort.getValue();
    }//end constructor
    
    /*
-   finds the next value of the smallest one,
+   finds the nextME value of the smallest one,
    then re-finds the smallest
    */
    @Override
-   public void next(){
-      Integer tempInt;
+   public void nextME(){
       if(leftVal){
-         leftSort.next();
-      else{
-         rightSort.next();
+         leftSort.nextME();
+      }else{
+         rightSort.nextME();
       }
-      leftVal = leftSort.getVal() <= rightSort.getVal();
-   }//end next
+      leftVal = leftSort.getValue() <= rightSort.getValue();
+   }//end nextME
    
    @Override
    public Integer getValue(){
       if(leftVal){
-         return leftSort.getVal();
+         return leftSort.getValue();
       }else{
-         return rightSort.getVal();
+         return rightSort.getValue();
       }
    }
-   
+   /*
    public Integer topLevelNext(){
       Integer tempInt = getValue();
-      next();
+      nextME();
       return tempInt;
    }
+   */
 }//end classs

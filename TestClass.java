@@ -13,10 +13,11 @@ public class TestClass{
       //sublist isn't inclusive of the right most element
             
       //System.out.println(""+subName.get(0));
-      //MergeSort sorter = new MergeSortWorker(name);
-      //for(int i=0; i<10; i++){  
+      MergeSortWorker sorter = new MergeSortWorker(name);
+      for(int i=0; i<10; i++){  
       
-        // System.out.println(sorter.next().toString());
-      //}
+         System.out.println(sorter.getValue().toString());
+         sorter.nextME();
+      }
    }
 }
