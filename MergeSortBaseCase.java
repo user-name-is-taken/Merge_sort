@@ -7,22 +7,24 @@ public class MergeSortBaseCase implements MergeSort{
    public MergeSortBaseCase(List ogList){
       //super();
       thisList = ogList;
+      if(thisList.size()<2 && (int)thisList.get(0)>(int)thisList.get(1)){
+         Integer tempInt = thisList.get(1);
+         thisList.set(1,thisList.get(0));
+         thisList.set(0,tempInt);
+      }  
    }
 
    @Override
-   public Integer next(){
-      if(thisList.size()<2 || (int)thisList.get(0)<=(int)thisList.get(1)){
-         //tempInt = (int)thisList.get(0);
-         //thisList.set(0,Integer.MAX_VALUE);//could also delete here with a better data structure
-         //return tempInt;
-         return (Integer)thisList.remove(0);
-      }else{
-         //tempInt = (int)thisList.get(1);
-         //thisList.set(1,Integer.MAX_VALUE);//could also delete here
-         //return tempInt;
-         return (Integer)thisList.remove(1);
-         //concurrent modification?
-         
-      }
+   public void next(){
+      thisList.remove(0);
+      
+   }
+   @Override
+   public Integer getValue(){
+       if (!thisList.isEmpty()){
+         return thisList.get(0);
+       }else{
+         return Integer.MAX_VALUE;
+       }
    }
 }
