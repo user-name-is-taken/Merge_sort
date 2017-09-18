@@ -1,12 +1,8 @@
 import java.util.List;
 
 public class MergeSortWorker implements MergeSort{
-   private MergeSort rightSort;
-   private MergeSort leftSort;
-   private Integer rightVal;
-   private Integer leftVal;
-   
-   private Integer tempInt;
+   private MergeSort smallerSort;
+   private MergeSort largerSort;
 
    public MergeSortWorker(List origionalList){
       /*
@@ -15,42 +11,50 @@ public class MergeSortWorker implements MergeSort{
       int split = origionalList.size()/2;//this is probably an error
 
       if(origionalList.size() <= 4){
-         rightSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
-         leftSort = new MergeSortBaseCase(origionalList.subList(0, split));
+         smallerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
+         largerSort = new MergeSortBaseCase(origionalList.subList(0, split));
       }else{
-         rightSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
-         leftSort = new MergeSortWorker(origionalList.subList(0, split));
+         smallerSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
+         largerSort = new MergeSortWorker(origionalList.subList(0, split));
       }
-      rightVal = rightSort.next();
-      leftVal = leftSort.next();
+      assignSorts();
    }//end constructor
    
-   @Override
-   public Integer next(){
-      /*
-      return the next integer or raise an error 
-      or throw the correct index out of bounds exception
-      */
-
-      if(rightVal > leftVal){//if both are null, this will be a null pointer exception
-         tempInt = leftVal;
-         leftVal = leftSort.next();
-         if(rightVal == Integer.MAX_VALUE){
-            rightSort = null;
-            //deleting the object to save space can also delete rightSort
-            //can also delete the other value
-            //need to remove last constructor recursion
-         }
-         return tempInt;
-       }else if (leftVal > rightVal){
-         tempInt = rightVal;
-         rightVal = rightSort.next();
-         if(leftVal == Integer.MAX_VALUE){
-            leftSort = null;
-         }
-         return tempInt;
-      }else{
-         return Integer.MAX_VALUE;
+   private void assignSorts(){
+      if(smallerSort.getValue() > largerSort.getValue()){
+         MergeSort temp = smallerSort;
+         smallerSort = largerSort;
+         largerSort = temp;
       }
-   }//end next
+   }
+   
+   private Integer assignSorts(Integer smallestNext){
+      if(smallestNext > largerSort.getValue()){
+         MergeSort temp = smallerSort;
+         smallerSort = largerSort;
+         largerSort = temp;
+      }
+      return smallestNext;
+   }
+   
+   /*
+   finds the nextME value of the smallest one,
+   then re-finds the smallest
+   */
+   @Override
+   public Integer nextME(){
+      return assignSorts(smallerSort.nextME());
+   }//end nextME
+   
+   @Override
+   public Integer getValue(){
+      return smallerSort.getValue();
+   }
+   /*
+   public Integer topLevelNext(){
+      Integer tempInt = getValue();
+      nextME();
+      return tempInt;
+   }
+   */
 }//end classs
