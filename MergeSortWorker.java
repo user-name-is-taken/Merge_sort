@@ -1,9 +1,8 @@
 import java.util.List;
 
 public class MergeSortWorker implements MergeSort{
-   private MergeSort rightSort;
-   private MergeSort leftSort;
-   private Boolean leftVal;
+   private MergeSort smallerSort;
+   private MergeSort largerSort;
 
    public MergeSortWorker(List origionalList){
       /*
@@ -12,14 +11,22 @@ public class MergeSortWorker implements MergeSort{
       int split = origionalList.size()/2;//this is probably an error
 
       if(origionalList.size() <= 4){
-         rightSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
-         leftSort = new MergeSortBaseCase(origionalList.subList(0, split));
+         smallerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
+         largerSort = new MergeSortBaseCase(origionalList.subList(0, split));
       }else{
-         rightSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
-         leftSort = new MergeSortWorker(origionalList.subList(0, split));
+         smallerSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
+         largerSort = new MergeSortWorker(origionalList.subList(0, split));
       }
-      leftVal = leftSort.getValue() <= rightSort.getValue();
+      assignSorts();
    }//end constructor
+   
+   private void assignSorts(){
+      if(smallerSort.getValue()>largerSort.getValue()){
+         MergeSort temp = smallerSort;
+         smallerSort = largerSort;
+         largerSort = temp;
+      }
+   }
    
    /*
    finds the nextME value of the smallest one,
@@ -27,21 +34,13 @@ public class MergeSortWorker implements MergeSort{
    */
    @Override
    public void nextME(){
-      if(leftVal){
-         leftSort.nextME();
-      }else{
-         rightSort.nextME();
-      }
-      leftVal = leftSort.getValue() <= rightSort.getValue();
+      smallerSort.nextME();
+      assignSorts();
    }//end nextME
    
    @Override
    public Integer getValue(){
-      if(leftVal){
-         return leftSort.getValue();
-      }else{
-         return rightSort.getValue();
-      }
+      return smallerSort.getValue();
    }
    /*
    public Integer topLevelNext(){

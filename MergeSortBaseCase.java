@@ -25,6 +25,7 @@ public class MergeSortBaseCase implements MergeSort{
        if (!thisList.isEmpty()){
          return (Integer) thisList.get(0);
        }else{
+         //delete self to save memory
          return Integer.MAX_VALUE;
        }
    }
