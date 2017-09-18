@@ -21,11 +21,20 @@ public class MergeSortWorker implements MergeSort{
    }//end constructor
    
    private void assignSorts(){
-      if(smallerSort.getValue()>largerSort.getValue()){
+      if(smallerSort.getValue() > largerSort.getValue()){
          MergeSort temp = smallerSort;
          smallerSort = largerSort;
          largerSort = temp;
       }
+   }
+   
+   private Integer assignSorts(Integer smallestNext){
+      if(smallestNext > largerSort.getValue()){
+         MergeSort temp = smallerSort;
+         smallerSort = largerSort;
+         largerSort = temp;
+      }
+      return smallestNext;
    }
    
    /*
@@ -33,9 +42,8 @@ public class MergeSortWorker implements MergeSort{
    then re-finds the smallest
    */
    @Override
-   public void nextME(){
-      smallerSort.nextME();
-      assignSorts();
+   public Integer nextME(){
+      return assignSorts(smallerSort.nextME());
    }//end nextME
    
    @Override

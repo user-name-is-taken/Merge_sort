@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class TestClass{
    public static void main(String[] args){
@@ -15,9 +16,9 @@ public class TestClass{
       //System.out.println(""+subName.get(0));
       MergeSortWorker sorter = new MergeSortWorker(name);
       for(int i=0; i<10; i++){  
-      
-         System.out.println(sorter.getValue().toString());
-         sorter.nextME();
+
+         System.out.println(sorter.nextME().toString());
+         JOptionPane.showMessageDialog(null,"hello");
       }
    }
 }
