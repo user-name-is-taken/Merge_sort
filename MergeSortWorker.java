@@ -8,7 +8,7 @@ public class MergeSortWorker implements MergeSort{
       /*
       start the recursive constructor using the ArrayList's split method
       */
-      int split = origionalList.size()/2;//this is probably an error
+      int split = origionalList.size()/2;
 
       if(origionalList.size() <= 4){
          smallerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
@@ -29,10 +29,12 @@ public class MergeSortWorker implements MergeSort{
    }
    
    private Integer assignSorts(Integer smallestNext){
-      if(smallestNext > largerSort.getValue()){
+      Integer largestNext = largerSort.getValue();
+      if(smallestNext > largestNext){//ConcurrentModificationException here?
          MergeSort temp = smallerSort;
          smallerSort = largerSort;
          largerSort = temp;
+         return largestNext;
       }
       return smallestNext;
    }

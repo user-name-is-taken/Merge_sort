@@ -22,7 +22,8 @@ public class MergeSortBaseCase implements MergeSort{
    @Override
    public Integer getValue(){
        if (thisList.isEmpty()){
-         //delete self to save memory
+         //throw an error then delete this to save memory
+         //use a static class to replace this after the deletion
          return Integer.MAX_VALUE;
        }else{
          return (Integer) thisList.get(0);
