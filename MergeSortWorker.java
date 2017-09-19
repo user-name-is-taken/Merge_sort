@@ -3,6 +3,7 @@ import java.util.List;
 public class MergeSortWorker implements MergeSort{
    private MergeSort smallerSort;
    private MergeSort largerSort;
+   private static final NullSortClass killer = new NullSortClass();
 
    public MergeSortWorker(List origionalList){
       /*
@@ -20,7 +21,7 @@ public class MergeSortWorker implements MergeSort{
       assignSorts();
    }//end constructor
    
-   private void assignSorts(){
+   private void assignSorts(){//used in constructor
       if(smallerSort.getValue() > largerSort.getValue()){
          MergeSort temp = smallerSort;
          smallerSort = largerSort;
@@ -28,7 +29,7 @@ public class MergeSortWorker implements MergeSort{
       }
    }
    
-   private Integer assignSorts(Integer smallestNext){
+   private Integer assignSorts(Integer smallestNext){//used in 
       Integer largestNext = largerSort.getValue();
       if(smallestNext > largestNext){
          MergeSort temp = smallerSort;
@@ -45,7 +46,14 @@ public class MergeSortWorker implements MergeSort{
    */
    @Override
    public Integer nextME(){
-      return assignSorts(smallerSort.nextME());
+      try{
+         return assignSorts(smallerSort.nextME());
+      }catch(IndexOutOfBoundsException e){//happens on the next
+         //switch and null
+         smallerSort = largerSort;
+         largerSort = killer;
+         return largestNext;//fix me!
+      }   
    }//end nextME
    
    @Override

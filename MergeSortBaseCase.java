@@ -3,6 +3,7 @@ import java.util.List;
 public class MergeSortBaseCase implements MergeSort{
    private List thisList;
    private static Integer tempInt;//need to be careful with statics in recursion
+
    
    public MergeSortBaseCase(List ogList){
       //super();
