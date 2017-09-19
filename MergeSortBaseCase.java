@@ -16,7 +16,7 @@ public class MergeSortBaseCase implements MergeSort{
 
    @Override
    public Integer nextME(){
-      return (Integer)thisList.remove(0);
+      return (Integer)thisList.remove(0);//will automatically throw an error
    }
    
    @Override

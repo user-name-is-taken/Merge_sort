@@ -29,10 +29,12 @@ public class MergeSortWorker implements MergeSort{
    }
    
    private Integer assignSorts(Integer smallestNext){
-      if(smallestNext > largerSort.getValue()){
+      Integer largestNext = largerSort.getValue();
+      if(smallestNext > largestNext){
          MergeSort temp = smallerSort;
          smallerSort = largerSort;
          largerSort = temp;
+         return largestNext;
       }
       return smallestNext;
    }
