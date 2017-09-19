@@ -17,16 +17,13 @@ public class MergeSortBaseCase implements MergeSort{
 
    @Override
    public Integer nextME(){
-      return (Integer)thisList.remove(0);//will automatically throw an error
+      Integer temp = (Integer)thisList.remove(0);//will automatically throw an error
+      assert !thisList.isEmpty();// checks if there are more. If not, throws an error
+      return temp;
    }
    
    @Override
    public Integer getValue(){
-       if (thisList.isEmpty()){
-         //delete self to save memory
-         return Integer.MAX_VALUE;
-       }else{
-         return (Integer) thisList.get(0);
-       }
+      return (Integer) thisList.get(0);
    }
 }

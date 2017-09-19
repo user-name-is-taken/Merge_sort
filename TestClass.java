@@ -7,23 +7,29 @@ public class TestClass{
       //pass
       ArrayList<Integer> name = new ArrayList<>();
       int[] gers = {1,3,2,4,5,2,6,2};
-      //for(int i: gers)name.add(new Integer(i));
+      for(int i: gers)name.add(new Integer(i));
       //List subName = name.subList(0,5);
       //List name2 = name.subList(2,5);
-      name.remove(0);
+      try{
+         name.remove(0);
+      }catch(IndexOutOfBoundsException e){
+         System.out.print(""+e.getStackTrace()[1]);//e.getStackTrace().length-1
+      }
       //sublist isn't inclusive of the right most element
             
       //System.out.println(""+subName.get(0));
+      
       MergeSortWorker sorter = new MergeSortWorker(name);
       try{
-         for(int i=0; i<10; i++){  
 
+         for(int i=0; i<10; i++){  
+           System.out.println(sorter.getValue().toString());
             System.out.println(sorter.nextME().toString());
             JOptionPane.showMessageDialog(null,"hello");
          }
-      catch(NullPointerException e){
+      }catch(NullPointerException e){
          System.out.println("DONE");
       }
-
+//*/
    }
 }

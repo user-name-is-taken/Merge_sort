@@ -7,9 +7,13 @@ public class MergeSortWorker implements MergeSort{
 
    public MergeSortWorker(List origionalList){
       /*
+      This constructor should run in O(n/2 + n/4 + n/8...n/log(n)) or something.
+         after that, the nextME method should require only one stop per level (k in the previous sum) at each step
+         ultimately this isn't as efficient as other sorting algorithms but the set-up is faster, so you can start reading
+         the list immediately
       start the recursive constructor using the ArrayList's split method
       */
-      int split = origionalList.size()/2;//this is probably an error
+      int split = origionalList.size()/2;
 
       if(origionalList.size() <= 4){
          smallerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
@@ -29,8 +33,8 @@ public class MergeSortWorker implements MergeSort{
       }
    }
    
-   private Integer assignSorts(Integer smallestNext){//used in 
-      Integer largestNext = largerSort.getValue();
+   private Integer assignSorts(Integer smallestNext,Integer largestNext){//used in 
+       
       if(smallestNext > largestNext){
          MergeSort temp = smallerSort;
          smallerSort = largerSort;
@@ -45,14 +49,15 @@ public class MergeSortWorker implements MergeSort{
    then re-finds the smallest
    */
    @Override
-   public Integer nextME(){
+   public Integer nextME(){    
+      Integer largeNext = largerSort.getValue();
       try{
-         return assignSorts(smallerSort.nextME());
-      }catch(IndexOutOfBoundsException e){//happens on the next
+         return assignSorts(smallerSort.nextME(), largeNext);
+      }catch(AssertionError e){//see the BaseCase
          //switch and null
          smallerSort = largerSort;
          largerSort = killer;
-         return largestNext;//fix me!
+         return largeNext;
       }   
    }//end nextME
    

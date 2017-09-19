@@ -10,5 +10,5 @@ public final class NullSortClass implements MergeSort{
       return Integer.MAX_VALUE;
    }
          /*the null pointer exception means you're compeltely done because it means both
-      sides at every level are Integer.MAX_VALUE*/
+      sides at every level are the NullSortClass killer*/
 }
