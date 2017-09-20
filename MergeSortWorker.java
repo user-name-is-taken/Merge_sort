@@ -7,10 +7,10 @@ public class MergeSortWorker implements MergeSort{
 
    public MergeSortWorker(List origionalList){
       /*
-      This constructor should run in O(n/2 + n/4 + n/8...n/log(n)) or something.
+      This constructor should run in O(2 + 4 + 8...+n/2) which is close to O(n) it also requires this many objectst.
          after that, the nextME method should require only one stop per level (k in the previous sum) at each step
-         ultimately this isn't as efficient as other sorting algorithms but the set-up is faster, so you can start reading
-         the list immediately
+         ultimately this isn't as efficient as other sorting algorithms O(setup + finding each element) to sort an entire list,
+         but the set-up is faster, so you can start reading the list immediately
       start the recursive constructor using the ArrayList's split method
       */
       int split = origionalList.size()/2;
