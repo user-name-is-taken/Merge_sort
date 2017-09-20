@@ -3,26 +3,27 @@ import java.util.List;
 public class MergeSortBaseCase implements MergeSort{
    private List thisList;
    private static Integer tempInt;//need to be careful with statics in recursion
+
    
    public MergeSortBaseCase(List ogList){
       //super();
       thisList = ogList;
+      if(thisList.size()==2 && (int)thisList.get(0)>(int)thisList.get(1)){
+         Object tempInt = thisList.get(1);
+         thisList.set(1,thisList.get(0));
+         thisList.set(0,tempInt);
+      }  
    }
 
    @Override
-   public Integer next(){
-      if(thisList.size()<2 || (int)thisList.get(0)<=(int)thisList.get(1)){
-         //tempInt = (int)thisList.get(0);
-         //thisList.set(0,Integer.MAX_VALUE);//could also delete here with a better data structure
-         //return tempInt;
-         return (Integer)thisList.remove(0);
-      }else{
-         //tempInt = (int)thisList.get(1);
-         //thisList.set(1,Integer.MAX_VALUE);//could also delete here
-         //return tempInt;
-         return (Integer)thisList.remove(1);
-         //concurrent modification?
-         
-      }
+   public Integer nextME(){
+      Integer temp = (Integer)thisList.remove(0);//will automatically throw an error
+      assert !thisList.isEmpty();// checks if there are more. If not, throws an error
+      return temp;
+   }
+   
+   @Override
+   public Integer getValue(){
+      return (Integer) thisList.get(0);
    }
 }
