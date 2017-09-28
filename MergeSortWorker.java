@@ -63,7 +63,7 @@ public class MergeSortWorker implements MergeSort{
       Integer largeNext = largerSort.getValue();//IndexOutOfBoundsException
       try{
          return assignSorts(smallerSort.nextME(), largeNext);//IndexOutOfBoundsException
-      }catch(AssertionError e){//see the BaseCase
+      }catch(EmptyList e){//see the BaseCase
          //switch and null
          smallerSort = largerSort;
          largerSort = killer;

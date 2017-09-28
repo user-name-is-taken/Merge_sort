@@ -6,8 +6,10 @@ public class TestClass{
    public static void main(String[] args){
       //pass
       ArrayList<Integer> name = new ArrayList<>();
-      int[] gers = {1,3,2,4,5,2,6,2};
+      int[] gers = {1,3,2,4,5,2,6,2,1,22,31,55,22,1,5,4,7,10};
+      
       for(int i: gers)name.add(new Integer(i));
+      assert false;
       //List subName = name.subList(0,5);
       //List name2 = name.subList(2,5);
       //sublist isn't inclusive of the right most element
@@ -16,7 +18,6 @@ public class TestClass{
       
       MergeSortWorker sorter = new MergeSortWorker(name);
       try{
-
          while(true){  
            System.out.println(sorter.getValue().toString());
             sorter.nextME();//indexOutOfBoundsException

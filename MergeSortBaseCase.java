@@ -25,7 +25,7 @@ public class MergeSortBaseCase implements MergeSort{
    @Override
    public Integer nextME(){
       Integer temp = thisList.remove(0);//will automatically throw an error
-      assert !thisList.isEmpty();// checks if there are more. If not, throws an error
+      if(thisList.isEmpty()) throw new EmptyList();// checks if there are more. If not, throws an error
       //return temp;
       return getValue();
    }
