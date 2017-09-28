@@ -10,11 +10,6 @@ public class TestClass{
       for(int i: gers)name.add(new Integer(i));
       //List subName = name.subList(0,5);
       //List name2 = name.subList(2,5);
-      try{
-         name.remove(0);
-      }catch(IndexOutOfBoundsException e){
-         System.out.print(""+e.getStackTrace()[1]);//e.getStackTrace().length-1
-      }
       //sublist isn't inclusive of the right most element
             
       //System.out.println(""+subName.get(0));
@@ -22,7 +17,7 @@ public class TestClass{
       MergeSortWorker sorter = new MergeSortWorker(name);
       try{
 
-         for(int i=0; i<10; i++){  
+         while(true){  
            System.out.println(sorter.getValue().toString());
             System.out.println(sorter.nextME().toString());
             JOptionPane.showMessageDialog(null,"hello");
