@@ -19,7 +19,7 @@ public class TestClass{
 
          while(true){  
            System.out.println(sorter.getValue().toString());
-            System.out.println(sorter.nextME().toString());
+            sorter.nextME();//indexOutOfBoundsException
             JOptionPane.showMessageDialog(null,"hello");
          }
       }catch(NullPointerException e){

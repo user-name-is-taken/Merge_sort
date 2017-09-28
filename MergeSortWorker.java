@@ -1,5 +1,16 @@
 import java.util.List;
 
+
+/*
+One problem is you were returning the previous smallest
+Instead of the current value that replaced the previous smallest.
+
+See the base class's nextME() changes
+*/
+
+
+
+
 public class MergeSortWorker implements MergeSort{
    private MergeSort smallerSort;
    private MergeSort largerSort;
@@ -20,9 +31,11 @@ public class MergeSortWorker implements MergeSort{
       
       if(origionalList.size() <= 4){
          smallerSort = new MergeSortBaseCase(origionalList.subList(0, split));
-         //if(origionalList.size()>2){ largerSort...}
-         largerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
-          
+         if(origionalList.size()>2){ 
+            largerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
+         }else{
+            largerSort = killer;
+         } 
       }else{
          smallerSort = new MergeSortWorker(origionalList.subList(0, split));
          largerSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
@@ -47,9 +60,9 @@ public class MergeSortWorker implements MergeSort{
    */
    @Override
    public Integer nextME(){    
-      Integer largeNext = largerSort.getValue();//concurrent list modification
+      Integer largeNext = largerSort.getValue();//IndexOutOfBoundsException
       try{
-         return assignSorts(smallerSort.nextME(), largeNext);
+         return assignSorts(smallerSort.nextME(), largeNext);//IndexOutOfBoundsException
       }catch(AssertionError e){//see the BaseCase
          //switch and null
          smallerSort = largerSort;
