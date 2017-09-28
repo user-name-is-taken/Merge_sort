@@ -15,8 +15,8 @@ public class MergeSortBaseCase implements MergeSort{
       //List<Integer> subList = new ArrayList<Integer>(list.subList(0,2));
       
       
-      if(thisList.size()==2 && (int)thisList.get(0)>(int)thisList.get(1)){
-         Integer tempInt = (Integer) thisList.get(1);
+      if(thisList.size()==2 && thisList.get(0)>thisList.get(1)){
+         Integer tempInt = thisList.get(1);
          thisList.set(1,thisList.get(0));
          thisList.set(0,tempInt);
       }  
@@ -24,13 +24,14 @@ public class MergeSortBaseCase implements MergeSort{
 
    @Override
    public Integer nextME(){
-      Integer temp = (Integer)thisList.remove(0);//will automatically throw an error
-      assert !thisList.isEmpty();// checks if there are more. If not, throws an error
-      return temp;
+      Integer temp = thisList.remove(0);//will automatically throw an error
+      if(thisList.isEmpty()) throw new EmptyList();// checks if there are more. If not, throws an error
+      //return temp;
+      return getValue();
    }
    
    @Override
    public Integer getValue(){
-      return (Integer) thisList.get(0);//ConcurrentListModification
+      return (Integer) thisList.get(0);//index out of bounds
    }
 }
