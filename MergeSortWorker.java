@@ -26,17 +26,18 @@ public class MergeSortWorker implements MergeSort{
       
       hopefully, origionalList will be deleted after this function
       */
-      int split = origionalList.size()/2;
+
       
       
       if(origionalList.size() <= 4){
-         smallerSort = new MergeSortBaseCase(origionalList.subList(0, split));
+         smallerSort = new MergeSortBaseCase(origionalList.subList(0, 2));
          if(origionalList.size()>2){ 
-            largerSort = new MergeSortBaseCase(origionalList.subList(split, origionalList.size()));
+            largerSort = new MergeSortBaseCase(origionalList.subList(2, origionalList.size()));
          }else{
             largerSort = killer;
          } 
       }else{
+         int split = origionalList.size()/2;
          smallerSort = new MergeSortWorker(origionalList.subList(0, split));
          largerSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
       }
