@@ -26,22 +26,23 @@ public class MergeSortWorker implements MergeSort{
       
       hopefully, origionalList will be deleted after this function
       */
-
-      
       
       if(origionalList.size() <= 4){
          smallerSort = new MergeSortBaseCase(origionalList.subList(0, 2));
          if(origionalList.size()>2){ 
             largerSort = new MergeSortBaseCase(origionalList.subList(2, origionalList.size()));
+            assignSorts(smallerSort.nextME(), largerSort.nextME());
          }else{
             largerSort = killer;
+            assignSorts(smallerSort.nextME(), Integer.MAX_VALUE);
          } 
+
       }else{
          int split = origionalList.size()/2;
          smallerSort = new MergeSortWorker(origionalList.subList(0, split));
          largerSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
+         assignSorts(smallerSort.getValue(), largerSort.getValue());
       }
-      assignSorts(smallerSort.getValue(), largerSort.getValue());
    }//end constructor
      
    private Integer assignSorts(Integer smallestNext,Integer largestNext){
@@ -64,7 +65,7 @@ public class MergeSortWorker implements MergeSort{
       Integer largeNext = largerSort.getValue();//IndexOutOfBoundsException
       try{
          return assignSorts(smallerSort.nextME(), largeNext);//IndexOutOfBoundsException
-      }catch(EmptyList e){//see the BaseCase
+      }catch(java.util.NoSuchElementException e){//see the BaseCase
          //switch and null
          smallerSort = largerSort;
          largerSort = killer;
