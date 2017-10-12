@@ -1,14 +1,11 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.LinkedList;
 
 public class MergeSortBaseCase implements MergeSort{
-   private Iterator<Integer> thisIter;
-   private static Integer tempInt;//need to be careful with statics in recursion
-   private Integer previous;
+   private LinkedList<Integer> baseList;
+   
 
    
-   public MergeSortBaseCase(List ogList){
+   public MergeSortBaseCase(int inSize){
       //super();
       //thisList = ogList;//make this into a new list
       
@@ -16,23 +13,24 @@ public class MergeSortBaseCase implements MergeSort{
       //so the memory size is the same if the passed in list is deleted.
       //List<Integer> subList = new ArrayList<Integer>(list.subList(0,2));
       
-      
-      if(ogList.size()==2 && (int)ogList.get(0)>(int)ogList.get(1)){
-         Integer tempInt = (Integer) ogList.get(1);
-         ogList.set(1,ogList.get(0));
-         ogList.set(0,tempInt);
-      }  
-      thisIter = ogList.iterator();
+      baseList.add(MergeSortWorker.workList.removeFirst());//null pointer
+      if(inSize==2){
+         if(baseList.getFirst()>MergeSortWorker.workList.getFirst()){
+            baseList.addFirst(MergeSortWorker.workList.removeFirst());
+         }else{
+            baseList.addLast(MergeSortWorker.workList.removeFirst());
+         }
+      }
    }
 
    @Override
    public Integer nextME(){
-      previous = thisIter.next();
-      return previous;
+      baseList.removeFirst();
+      return getValue();
    }
    
    @Override
    public Integer getValue(){
-      return previous;//index out of bounds
+      return baseList.getFirst();
    }
 }

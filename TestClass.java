@@ -5,7 +5,7 @@ import java.lang.Math;
 import java.util.Collections;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
 import java.lang.instrument.Instrumentation;
 import java.util.Iterator;
 
@@ -17,8 +17,8 @@ public class TestClass{
    public static void main(String[] args){
          //System.out.println(Arrays.toString(randomArr(30).toArray()));
    
-      /*
-      MergeSortWorker work = new MergeSortWorker(randomArr(Integer.MAX_VALUE/300));//doesn't work with /250
+      
+      MergeSortWorker work = new MergeSortWorker(randomArr(20000));//doesn't work with /250
       //sortNprint(work);
       
       JOptionPane.showMessageDialog(null,"hello");
@@ -26,7 +26,8 @@ public class TestClass{
          System.out.println(work.nextME());
       }
       //SOtest();
-      */
+      
+      //System.out.println(""+(3/2));
    }
    
    /*prints the memory currently being used by the JVM
@@ -91,14 +92,14 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
    }
    
    /*makes an array with random elements of the specified size*/
-   public static ArrayList<Integer> randomArr(int size){
-      ArrayList<Integer> name = new ArrayList<>();
+   public static LinkedList<Integer> randomArr(int size){
+      LinkedList<Integer> name = new LinkedList<>();
       for(int i = size; i>0; i--)name.add((int)(Math.random()*(Integer.MAX_VALUE-1)));
       return name;
    }
    
    /*makes a large random array*/
-   public static ArrayList<Integer> randomArr(){
+   public static LinkedList<Integer> randomArr(){
       return randomArr(Integer.MAX_VALUE/500);
    }
    

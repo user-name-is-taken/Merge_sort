@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.LinkedList;
 
 
 /*
@@ -15,8 +16,9 @@ public class MergeSortWorker implements MergeSort{
    private MergeSort smallerSort;
    private MergeSort largerSort;
    private static final NullSortClass killer = new NullSortClass();
+   public static LinkedList<Integer> workList;
 
-   public MergeSortWorker(List origionalList){
+   public MergeSortWorker(LinkedList<Integer> origionalList){
       /*
       This constructor should run in O(2 + 4 + 8...+n/2) which is close to O(n) it also requires this many objectst.
          after that, the nextME method should require only one stop per level (k in the previous sum) at each step
@@ -26,27 +28,49 @@ public class MergeSortWorker implements MergeSort{
       
       hopefully, origionalList will be deleted after this function
       */
+      workList = origionalList;
+      int inSize = workList.size();// -1 doesn't stop the NullPointerException
+      //above this only in top constructor
       
-      if(origionalList.size() <= 4){
-         smallerSort = new MergeSortBaseCase(origionalList.subList(0, 2));
-         if(origionalList.size()>2){ 
-            largerSort = new MergeSortBaseCase(origionalList.subList(2, origionalList.size()));
-            assignSorts(smallerSort.nextME(), largerSort.nextME());
+      int nextInSize = inSize/2;
+      if(inSize <= 4){
+         smallerSort = new MergeSortBaseCase(nextInSize);
+         if(inSize>2){ 
+            largerSort = new MergeSortBaseCase(inSize-nextInSize);
          }else{
             largerSort = killer;
-            assignSorts(smallerSort.nextME(), Integer.MAX_VALUE);
          } 
 
       }else{
-         int split = origionalList.size()/2;
-         smallerSort = new MergeSortWorker(origionalList.subList(0, split));
-         largerSort = new MergeSortWorker(origionalList.subList(split, origionalList.size()));
-         assignSorts(smallerSort.getValue(), largerSort.getValue());
+         smallerSort = new MergeSortWorker(nextInSize);//null pointer
+         largerSort = new MergeSortWorker(inSize-nextInSize);
+         
       }
+      assignSorts(smallerSort.getValue(), largerSort.getValue());
+      
+      //below this only in top constructor
+      System.out.println("wtf error");
+      workList = null;//not causing the null pointer exception
+      System.out.println("wtf error");
+   }
+      
+   private MergeSortWorker(int inSize){
+      int nextInSize = inSize/2;
+      if(inSize <= 4){// null pointer
+         smallerSort = new MergeSortBaseCase(nextInSize);
+         if(inSize>2){ 
+            largerSort = new MergeSortBaseCase(inSize-nextInSize);
+         }else{
+            largerSort = killer;
+         } 
+      }else{
+         smallerSort = new MergeSortWorker(nextInSize);// multiple null pointers?
+         largerSort = new MergeSortWorker(inSize-nextInSize);
+      }
+      assignSorts(smallerSort.getValue(), largerSort.getValue());
    }//end constructor
      
    private Integer assignSorts(Integer smallestNext,Integer largestNext){
-       
       if(smallestNext > largestNext){
          MergeSort temp = smallerSort;
          smallerSort = largerSort;
