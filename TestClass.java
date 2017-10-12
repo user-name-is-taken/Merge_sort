@@ -17,6 +17,7 @@ public class TestClass{
    public static void main(String[] args){
          //System.out.println(Arrays.toString(randomArr(30).toArray()));
    
+      /*
       MergeSortWorker work = new MergeSortWorker(randomArr(Integer.MAX_VALUE/300));//doesn't work with /250
       //sortNprint(work);
       
@@ -25,7 +26,7 @@ public class TestClass{
          System.out.println(work.nextME());
       }
       //SOtest();
-      
+      */
    }
    
    /*prints the memory currently being used by the JVM
