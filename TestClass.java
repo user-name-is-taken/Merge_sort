@@ -5,9 +5,11 @@ import java.lang.Math;
 import java.util.Collections;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
 import java.lang.instrument.Instrumentation;
-import java.util.Iterator;
+import java.util.PriorityQueue;
+
+
 
 
 public class TestClass{
@@ -17,16 +19,18 @@ public class TestClass{
    public static void main(String[] args){
          //System.out.println(Arrays.toString(randomArr(30).toArray()));
    
-      /*
-      MergeSortWorker work = new MergeSortWorker(randomArr(Integer.MAX_VALUE/300));//doesn't work with /250
-      //sortNprint(work);
-      
-      JOptionPane.showMessageDialog(null,"hello");
+
+      MergeSortWorker work = new MergeSortWorker(randomArr(Integer.MAX_VALUE/500));//doesn't work with /250
+               //sortNprint(work);      
+      JOptionPane.showMessageDialog(null,""+MergeSortWorker.workList.size());//error, this should be 0
       for(int i=0;i<10;i++){
          System.out.println(work.nextME());
       }
-      //SOtest();
-      */
+
+
+      
+      //new PriorityQueue(randomArr(Integer.MAX_VALUE/500));
+      //System.out.println(""+(3/2));
    }
    
    /*prints the memory currently being used by the JVM
@@ -39,20 +43,6 @@ public class TestClass{
       System.out.println(inst.getObjectSize(o));
    }
    */
-      /*a test for stack overflow. Trying to find the right data structure*/
-   public static void SOtest(){
-      int[] gers = {1,3,2,4};
-      ArrayList<Integer> name = new ArrayList<>();
-      for(int i:gers)name.add(i);
-      
-      
-      Iterator<Integer> firstI = name.subList(0,2).iterator();
-      Iterator<Integer> secondI = name.subList(2,name.size()).iterator();
-      
-      firstI.next();
-      firstI.next();
-      firstI.next();//java.util.NoSuchElementException
-      //secondI.remove();
       
       /* The behavior of an iterator is unspecified
 if the underlying collection is modified while the
@@ -65,10 +55,6 @@ iteration is in progress in any way other than by calling this method (remove())
 weakly consistent (fail-safe) iterators might do the trick?
 https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterators-in-java#17377698
 */ 
-      System.out.println(Arrays.toString(name.toArray()));
-      //.out.println(Arrays.toString(secondSL.toArray()));
-
-   }
    
    
    
@@ -86,19 +72,19 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
    }
    
    /*the java library sort function*/
-   public static void classicSort(ArrayList<Integer> name){
+   public static void classicSort(LinkedList<Integer> name){
       Collections.sort(name);
    }
    
    /*makes an array with random elements of the specified size*/
-   public static ArrayList<Integer> randomArr(int size){
-      ArrayList<Integer> name = new ArrayList<>();
+   public static LinkedList<Integer> randomArr(int size){
+      LinkedList<Integer> name = new LinkedList<>();
       for(int i = size; i>0; i--)name.add((int)(Math.random()*(Integer.MAX_VALUE-1)));
       return name;
    }
    
    /*makes a large random array*/
-   public static ArrayList<Integer> randomArr(){
+   public static LinkedList<Integer> randomArr(){
       return randomArr(Integer.MAX_VALUE/500);
    }
    
