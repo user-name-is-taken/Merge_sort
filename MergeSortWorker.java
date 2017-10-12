@@ -49,9 +49,7 @@ public class MergeSortWorker implements MergeSort{
       assignSorts(smallerSort.getValue(), largerSort.getValue());
       
       //below this only in top constructor
-      System.out.println("wtf error");
-      workList = null;//not causing the null pointer exception
-      System.out.println("wtf error");
+      //workList = null;//not causing the null pointer exception
    }
       
    private MergeSortWorker(int inSize){
