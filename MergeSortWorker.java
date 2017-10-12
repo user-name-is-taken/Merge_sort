@@ -97,6 +97,8 @@ public class MergeSortWorker implements MergeSort{
    
    @Override
    public Integer getValue(){
+      //could change this to speed things up. (every constructor uses it twice)
+         //by adding a smallest variable to each object
       return smallerSort.getValue();
    }
 }//end classs

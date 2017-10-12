@@ -17,15 +17,17 @@ public class TestClass{
    /*Tests confirm that subsequent nextME() runs are fast
    The first sort is still slow, but should get faster.*/
    public static void main(String[] args){
-         //System.out.println(Arrays.toString(randomArr(30).toArray()));
+      
    
-
-      MergeSortWorker work = new MergeSortWorker(randomArr(Integer.MAX_VALUE/500));//doesn't work with /250
-               //sortNprint(work);      
-      JOptionPane.showMessageDialog(null,""+MergeSortWorker.workList.size());//error, this should be 0
+      LinkedList<Integer> arr = randomArr(Integer.MAX_VALUE/50);
+      //System.out.println(Arrays.toString(arr.toArray()));
+      
+      MergeSortWorker work = new MergeSortWorker(arr);//doesn't work with /250
+      //sortNprint(work);      
+      /*JOptionPane.showMessageDialog(null,""+MergeSortWorker.workList.size());//error, this should be 0
       for(int i=0;i<10;i++){
          System.out.println(work.nextME());
-      }
+      }*/
 
 
       
@@ -79,7 +81,7 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
    /*makes an array with random elements of the specified size*/
    public static LinkedList<Integer> randomArr(int size){
       LinkedList<Integer> name = new LinkedList<>();
-      for(int i = size; i>0; i--)name.add((int)(Math.random()*(Integer.MAX_VALUE-1)));
+      for(int i = size; i>0; i--)name.add((int)(Math.random()*(100)));
       return name;
    }
    
