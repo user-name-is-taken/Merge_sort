@@ -7,6 +7,10 @@ One problem is you were returning the previous smallest
 Instead of the current value that replaced the previous smallest.
 
 See the base class's nextME() changes
+
+
+neither the BaseCase constructor, nor assignSorts is taking all the time.
+I think all this stack overhead is too much
 */
 
 
@@ -65,7 +69,7 @@ public class MergeSortWorker implements MergeSort{
          smallerSort = new MergeSortWorker(nextInSize);// multiple null pointers?
          largerSort = new MergeSortWorker(inSize-nextInSize);
       }
-      assignSorts(smallerSort.getValue(), largerSort.getValue());
+//      assignSorts(smallerSort.getValue(), largerSort.getValue());
    }//end constructor
      
    private Integer assignSorts(Integer smallestNext,Integer largestNext){
@@ -84,7 +88,7 @@ public class MergeSortWorker implements MergeSort{
    */
    @Override
    public Integer nextME(){    
-      Integer largeNext = largerSort.getValue();//IndexOutOfBoundsException
+      Integer largeNext = largerSort.getValue();//
       try{
          return assignSorts(smallerSort.nextME(), largeNext);//IndexOutOfBoundsException
       }catch(java.util.NoSuchElementException e){//see the BaseCase

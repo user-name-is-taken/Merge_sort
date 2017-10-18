@@ -19,7 +19,7 @@ public class TestClass{
    public static void main(String[] args){
       
    
-      LinkedList<Integer> arr = randomArr(Integer.MAX_VALUE/50);
+      LinkedList<Integer> arr = randomArr(Integer.MAX_VALUE/500);
       //System.out.println(Arrays.toString(arr.toArray()));
       
       MergeSortWorker work = new MergeSortWorker(arr);//doesn't work with /250
@@ -28,14 +28,13 @@ public class TestClass{
       for(int i=0;i<10;i++){
          System.out.println(work.nextME());
       }*/
-
-
-      
-      //new PriorityQueue(randomArr(Integer.MAX_VALUE/500));
+   
+      //new PriorityQueue(arr);//for testing speed
       //System.out.println(""+(3/2));
    }
    
-   /*prints the memory currently being used by the JVM
+   /*
+   prints the memory currently being used by the JVM
    https://stackoverflow.com/questions/239202/during-execution-how-can-a-java-program-tell-how-much-memory-it-is-using
    https://stackoverflow.com/questions/9368764/calculate-size-of-object-in-java
    
@@ -44,19 +43,9 @@ public class TestClass{
       Instrumentation inst;
       System.out.println(inst.getObjectSize(o));
    }
-   */
+   */   
       
-      /* The behavior of an iterator is unspecified
-if the underlying collection is modified while the
-iteration is in progress in any way other than by calling this method (remove()).
-      */
-  // could use an iterator instead of the current approach, while this doesn't
-  //delete members in the backing list it doesn't require making new arrays
-      /*
-
-weakly consistent (fail-safe) iterators might do the trick?
-https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterators-in-java#17377698
-*/ 
+      
    
    
    
@@ -65,7 +54,6 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
          System.out.println(sorter.getValue().toString());
          while(true){  
            System.out.println(sorter.nextME());
-            //indexOutOfBoundsException
             //JOptionPane.showMessageDialog(null,"hello");
          }
       }catch(NullPointerException e){
@@ -107,5 +95,11 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
       null members use memory?
       
       can't ever have values that are as big as the max integer
+      
+      weakly consistent (fail-safe) iterators
+https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterators-in-java#17377698
 
-*/
+ The behavior of an iterator is unspecified
+if the underlying collection is modified while the
+iteration is in progress in any way other than by calling this method (remove()).
+      */

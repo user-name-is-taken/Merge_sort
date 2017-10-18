@@ -16,6 +16,8 @@ public class MergeSortBaseCase implements MergeSort{
       //so the memory size is the same if the passed in list is deleted.
       //List<Integer> subList = new ArrayList<Integer>(list.subList(0,2));
       
+      
+      
       baseList = new LinkedList<Integer>();
       
       Integer val = MergeSortWorker.workList.removeFirst(); 
@@ -32,6 +34,8 @@ public class MergeSortBaseCase implements MergeSort{
 
    @Override
    public Integer nextME(){
+      //can switch to returning removeFirst, then saving the result in the worker? 
+      //--no because it might be larger.
       baseList.removeFirst();
       return getValue();
    }
