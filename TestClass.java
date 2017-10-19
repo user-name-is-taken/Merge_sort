@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.lang.instrument.Instrumentation;
 import java.util.PriorityQueue;
 
+import java.util.HashMap;
+
 
 
 
@@ -18,7 +20,7 @@ public class TestClass{
    The first sort is still slow, but should get faster.*/
    public static void main(String[] args){
          //System.out.println(Arrays.toString(randomArr(30).toArray()));
-   
+   /*
 
       MergeSortWorker work = new MergeSortWorker(randomArr(Integer.MAX_VALUE/500));//doesn't work with /250
                //sortNprint(work);      
@@ -26,11 +28,12 @@ public class TestClass{
       for(int i=0;i<10;i++){
          System.out.println(work.nextME());
       }
-
+*/
 
       
       //new PriorityQueue(randomArr(Integer.MAX_VALUE/500));
-      //System.out.println(""+(3/2));
+      System.out.println(""+(3.0/2));
+      
    }
    
    /*prints the memory currently being used by the JVM
@@ -57,7 +60,7 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
 */ 
    
    
-   
+   /*
    public static void sortNprint(MergeSortWorker sorter){
       try{
          System.out.println(sorter.getValue().toString());
@@ -70,6 +73,7 @@ https://stackoverflow.com/questions/17377407/what-are-fail-safe-fail-fast-iterat
          System.out.println("DONE");
       }
    }
+   */
    
    /*the java library sort function*/
    public static void classicSort(LinkedList<Integer> name){

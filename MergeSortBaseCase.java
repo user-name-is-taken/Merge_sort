@@ -3,7 +3,8 @@ import java.util.LinkedList;
 public class MergeSortBaseCase implements MergeSort{
    private LinkedList<Integer> baseList;
   
-   public MergeSortBaseCase(int inSize){
+  
+   public MergeSortBaseCase(){
       //super();
       //thisList = ogList;//make this into a new list
       
@@ -16,24 +17,20 @@ public class MergeSortBaseCase implements MergeSort{
       //so the memory size is the same if the passed in list is deleted.
       //List<Integer> subList = new ArrayList<Integer>(list.subList(0,2));
       
-      baseList = new LinkedList<Integer>();
-      
-      Integer val = MergeSortWorker.workList.removeFirst(); 
-      
-      this.baseList.add(val);//null pointer
-      if(inSize==2){
-         if(baseList.getFirst()>MergeSortWorker.workList.getFirst()){
-            baseList.addFirst(MergeSortWorker.workList.removeFirst());
-         }else{
-            baseList.addLast(MergeSortWorker.workList.removeFirst());
-         }
-      }
+      LinkedList<Integer> baseList = new LinkedList<Integer>();      
+   }
+   
+   /*add to beginning or end, or delete*/
+   public boolean addVal(Integer val){
+      return false;
    }
 
+/*nextME will be handled from the top level
+*/
    @Override
-   public Integer nextME(){
+   public void nextME(){ 
+      //just delete
       baseList.removeFirst();
-      return getValue();
    }
    
    @Override

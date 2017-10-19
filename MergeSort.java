@@ -4,6 +4,6 @@ change this to have next() and getValue()
    value should just be an accessor
 */
 public interface MergeSort{
-   Integer nextME();
    Integer getValue();
+   void nextME();
 }
