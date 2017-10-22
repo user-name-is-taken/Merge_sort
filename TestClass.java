@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.lang.instrument.Instrumentation;
 import java.util.PriorityQueue;
+import java.util.Iterator;
 
 import java.util.HashMap;
 
@@ -30,9 +31,12 @@ public class TestClass{
       }
 */
 
-      
-      //new PriorityQueue(randomArr(Integer.MAX_VALUE/500));
-      System.out.println(""+(3.0/2));
+      LinkedList<Integer> k = randomArr(Integer.MAX_VALUE/201);
+      Iterator q = k.listIterator(0);
+      JOptionPane.showMessageDialog(null,"start1");
+      classicSort(k);
+      JOptionPane.showMessageDialog(null,("start2"));
+      new MergeController(q);
       
    }
    

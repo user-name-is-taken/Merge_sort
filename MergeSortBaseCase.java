@@ -1,27 +1,31 @@
 import java.util.LinkedList;
 
+/*
+This class isn't strictly necessary, and it adds memory and steps to construct
+it, but It's useful conceptually.
+*/
+
 public class MergeSortBaseCase implements MergeSort{
    private LinkedList<Integer> baseList;
-  
-  
-   public MergeSortBaseCase(){
-      //super();
-      //thisList = ogList;//make this into a new list
+   
+   public MergeSortBaseCase(Integer val){
       
-      /*each of these will chop off the workList. 
-      By the end, the workList should be empty, and the baseLists should all be full.
       
-      This comment also explains the use of inSize in the Worker
-      */
-      //this will allow the constructor to delete the passed in list
-      //so the memory size is the same if the passed in list is deleted.
-      //List<Integer> subList = new ArrayList<Integer>(list.subList(0,2));
-      
-      LinkedList<Integer> baseList = new LinkedList<Integer>();      
+      baseList = new LinkedList<Integer>();
+      baseList.add(val);    
    }
    
-   /*add to beginning or end, or delete*/
+   /*add to beginning or end, or delete
+   as these values are passed in they're deleted from the MergeController's
+   passed in iterator*/
    public boolean addVal(Integer val){
+      if(val <= baseList.getFirst()){
+         baseList.addFirst(val);
+         return true;
+      }else if(val >= baseList.getLast()){
+         baseList.addLast(val);
+         return true;
+      }
       return false;
    }
 
